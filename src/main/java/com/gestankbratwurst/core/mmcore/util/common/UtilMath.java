@@ -1,7 +1,7 @@
 package com.gestankbratwurst.core.mmcore.util.common;
 
 import com.destroystokyo.paper.profile.CraftPlayerProfile;
-import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
+import java.util.TreeMap;
 
 /*******************************************************
  * Copyright (C) Gestankbratwurst suotokka@gmail.com
@@ -13,6 +13,32 @@ import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
  *
  */
 public class UtilMath {
+
+  private final static TreeMap<Integer, String> romanComponents = new TreeMap<>();
+
+  static {
+    romanComponents.put(1000, "M");
+    romanComponents.put(900, "CM");
+    romanComponents.put(500, "D");
+    romanComponents.put(400, "CD");
+    romanComponents.put(100, "C");
+    romanComponents.put(90, "XC");
+    romanComponents.put(50, "L");
+    romanComponents.put(40, "XL");
+    romanComponents.put(10, "X");
+    romanComponents.put(9, "IX");
+    romanComponents.put(5, "V");
+    romanComponents.put(4, "IV");
+    romanComponents.put(1, "I");
+  }
+
+  public static String toRomanNumeral(int number) {
+    int l = romanComponents.floorKey(number);
+    if (number == l) {
+      return romanComponents.get(number);
+    }
+    return romanComponents.get(l) + toRomanNumeral(number - l);
+  }
 
   public static double cut(double value, final int decimalPoints) {
     final int decades = (int) Math.pow(10, decimalPoints);
