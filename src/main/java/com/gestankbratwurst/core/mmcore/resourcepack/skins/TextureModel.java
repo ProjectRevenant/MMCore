@@ -557,6 +557,9 @@ public enum TextureModel {
   TORSO_BROKEN_BONE_SMALL(Material.STICK, 4527, false, false, false),
   HEALING_BONE(Material.STICK, 4528, false, false, false, FontMeta.of(18,0, "bitmap")),
   HEALING_BONE_SMALL(Material.STICK, 4529, false, false, false),
+  BONE(Material.STICK, 4530, false, false, false),
+  HEAD_BONE(Material.STICK, 4531, false, false, false),
+  TORSO_BONE(Material.STICK, 4532, false, false, false),
 
   CLEAR_WATER_BOTTLE(Material.POTION, 6000, false, false, false),
   MURKY_WATER_BOTTLE(Material.POTION, 6001, false, false, false),
