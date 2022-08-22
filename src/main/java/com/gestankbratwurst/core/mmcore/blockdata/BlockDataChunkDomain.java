@@ -4,6 +4,7 @@ import com.gestankbratwurst.core.mmcore.blockdata.events.BlockDataCreateEvent;
 import com.gestankbratwurst.core.mmcore.blockdata.events.BlockDataLoadEvent;
 import com.gestankbratwurst.core.mmcore.blockdata.events.BlockDataRemoveEvent;
 import com.gestankbratwurst.core.mmcore.blockdata.events.BlockDataSaveEvent;
+import com.gestankbratwurst.core.mmcore.util.common.UtilChunk;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import java.util.Collections;
@@ -143,10 +144,7 @@ public class BlockDataChunkDomain {
   }
 
   private int keyOf(Block block) {
-    final int relX = (block.getX() % 16 + 16) % 16;
-    final int relZ = (block.getZ() % 16 + 16) % 16;
-    final int relY = block.getY();
-    return (relY & 0xFFFF) | ((relX & 0xFF) << 16) | ((relZ & 0xFF) << 24);
+    return UtilChunk.relativeKeyOf(block);
   }
 
   private int keyToX(int key) {

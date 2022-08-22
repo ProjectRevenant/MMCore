@@ -8,6 +8,7 @@ import org.bukkit.Chunk;
 import org.bukkit.ChunkSnapshot;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.entity.Player;
 
@@ -65,6 +66,25 @@ public class UtilChunk {
 
   public static boolean isChunkInView(final Player player, final Chunk chunk) {
     return ChunkTracker.getChunkViews(player).contains(chunk.getChunkKey());
+  }
+
+  public static int relativeKeyOf(Block block) {
+    final int relX = (block.getX() % 16 + 16) % 16;
+    final int relZ = (block.getZ() % 16 + 16) % 16;
+    final int relY = block.getY();
+    return (relY & 0xFFFF) | ((relX & 0xFF) << 16) | ((relZ & 0xFF) << 24);
+  }
+
+  public static int blockKeyToX(int key) {
+    return (key >> 16) & 0xFF;
+  }
+
+  public static int blockKeyToY(int key) {
+    return key & 0xFFFF;
+  }
+
+  public static int blockKeyToZ(int key) {
+    return (key >> 24) & 0xFF;
   }
 
 }
