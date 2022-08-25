@@ -27,7 +27,7 @@ public class UtilInv {
     for (ItemStack itemStack : inventory) {
       while (itemStack.getAmount() > 0) {
         ItemStack single = itemStack.asOne();
-        itemStack.subtract();
+        itemStack = itemStack.subtract();
         randomlyPlaceInSingle(content, single);
       }
     }
@@ -36,17 +36,17 @@ public class UtilInv {
 
   private static void randomlyPlaceInSingle(ItemStack[] content, ItemStack itemStack) {
     Preconditions.checkArgument(itemStack.getAmount() == 1);
-    boolean foundSpot = false;
     boolean wrapAround = false;
     int index = ThreadLocalRandom.current().nextInt(content.length);
-    while (!foundSpot) {
+    while (true) {
       if (content[index] == null) {
         content[index] = itemStack;
-        foundSpot = true;
+        return;
       }
       if (content[index].isSimilar(itemStack)) {
         if (content[index].getAmount() < content[index].getMaxStackSize()) {
           content[index].add();
+          return;
         }
       }
       index++;

@@ -173,7 +173,6 @@ public final class MMCore extends JavaPlugin {
     Optional.ofNullable(blockDataListener).ifPresent(BlockDataListener::cleanupTermination);
     Optional.ofNullable(resourcepackModule).ifPresent(module -> module.disable(this));
     mongoStorage.getAccess().disconnect();
-    Thread.sleep(6500);
     Optional.ofNullable(redissonClient).ifPresent(RedissonClient::shutdown);
   }
 
