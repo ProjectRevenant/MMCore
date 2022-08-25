@@ -1,5 +1,7 @@
 package com.gestankbratwurst.core.mmcore.util.common;
 
+import com.google.common.base.Preconditions;
+import java.util.concurrent.ThreadLocalRandom;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
@@ -18,6 +20,45 @@ import org.bukkit.inventory.ItemStack;
  *
  */
 public class UtilInv {
+
+  public static void scramble(Inventory inventory) {
+    int size = inventory.getSize();
+    ItemStack[] content = new ItemStack[size];
+    for (ItemStack itemStack : inventory) {
+      while (itemStack.getAmount() > 0) {
+        ItemStack single = itemStack.asOne();
+        itemStack.subtract();
+        randomlyPlaceInSingle(content, single);
+      }
+    }
+    inventory.setContents(content);
+  }
+
+  private static void randomlyPlaceInSingle(ItemStack[] content, ItemStack itemStack) {
+    Preconditions.checkArgument(itemStack.getAmount() == 1);
+    boolean foundSpot = false;
+    boolean wrapAround = false;
+    int index = ThreadLocalRandom.current().nextInt(content.length);
+    while (!foundSpot) {
+      if (content[index] == null) {
+        content[index] = itemStack;
+        foundSpot = true;
+      }
+      if (content[index].isSimilar(itemStack)) {
+        if (content[index].getAmount() < content[index].getMaxStackSize()) {
+          content[index].add();
+        }
+      }
+      index++;
+      if (index == content.length) {
+        if (wrapAround) {
+          throw new IllegalStateException("No space for " + itemStack + " while scrambling.");
+        }
+        wrapAround = true;
+        index = 0;
+      }
+    }
+  }
 
   public static ItemStack[] getVerticallyFlippedContent(final Inventory inventory) {
     if (inventory.getType() != InventoryType.CHEST) {
