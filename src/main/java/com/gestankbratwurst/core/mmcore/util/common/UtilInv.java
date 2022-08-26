@@ -25,6 +25,9 @@ public class UtilInv {
     int size = inventory.getSize();
     ItemStack[] content = new ItemStack[size];
     for (ItemStack itemStack : inventory) {
+      if(itemStack == null) {
+        continue;
+      }
       while (itemStack.getAmount() > 0) {
         ItemStack single = itemStack.asOne();
         itemStack = itemStack.subtract();
