@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.attribute.Attribute;
@@ -23,6 +24,19 @@ import org.bukkit.persistence.PersistentDataType;
 
 public class ItemBuilder {
 
+  public static ItemBuilder of(Material material) {
+    return new ItemBuilder(material);
+  }
+
+  public static ItemBuilder of(ItemStack itemStack) {
+    return new ItemBuilder(itemStack);
+  }
+
+  private Material material;
+  private ItemMeta itemMeta;
+  private int amount;
+  private final List<Component> loreLines;
+
   public ItemBuilder(final Material material) {
     this(new ItemStack(material));
   }
@@ -32,16 +46,11 @@ public class ItemBuilder {
     this.material = itemStack.getType();
     this.amount = itemStack.getAmount();
     if (this.itemMeta.hasLore()) {
-      this.loreLines = Lists.newArrayList(Objects.requireNonNull(this.itemMeta.getLore()));
+      this.loreLines = Lists.newArrayList(Objects.requireNonNull(this.itemMeta.lore()));
     } else {
       this.loreLines = Lists.newArrayList();
     }
   }
-
-  private Material material;
-  private ItemMeta itemMeta;
-  private int amount;
-  private final List<String> loreLines;
 
   public ItemBuilder clearLore() {
     this.editLore(List::clear);
@@ -59,7 +68,7 @@ public class ItemBuilder {
     return this;
   }
 
-  public ItemBuilder editLore(final Consumer<List<String>> loreConsumer) {
+  public ItemBuilder editLore(final Consumer<List<Component>> loreConsumer) {
     loreConsumer.accept(this.loreLines);
     return this;
   }
@@ -75,6 +84,11 @@ public class ItemBuilder {
     if (this.itemMeta instanceof FireworkMeta fireworkMeta) {
       metaConsumer.accept(fireworkMeta);
     }
+    return this;
+  }
+
+  public ItemBuilder name(Component component) {
+    this.itemMeta.displayName(component);
     return this;
   }
 
@@ -94,16 +108,26 @@ public class ItemBuilder {
   }
 
   public ItemBuilder name(final String name) {
-    this.itemMeta.setDisplayName(name);
+    this.itemMeta.displayName(Component.text(name));
     return this;
   }
 
   public ItemBuilder lore(final String line) {
+    this.loreLines.add(Component.text(line));
+    return this;
+  }
+
+  public ItemBuilder lore(final Component line) {
     this.loreLines.add(line);
     return this;
   }
 
   public ItemBuilder lore(final String... lines) {
+    this.loreLines.addAll(Arrays.stream(lines).map(Component::text).toList());
+    return this;
+  }
+
+  public ItemBuilder lore(final Component... lines) {
     this.loreLines.addAll(Arrays.asList(lines));
     return this;
   }
@@ -144,7 +168,7 @@ public class ItemBuilder {
     return this;
   }
 
-  public ItemBuilder lore(final Collection<String> lines) {
+  public ItemBuilder lore(final Collection<Component> lines) {
     this.loreLines.addAll(lines);
     return this;
   }
@@ -187,7 +211,7 @@ public class ItemBuilder {
   public ItemStack build() {
     final ItemStack item = new ItemStack(this.material);
     if (!this.loreLines.isEmpty()) {
-      this.itemMeta.setLore(this.loreLines);
+      this.itemMeta.lore(this.loreLines);
     }
     item.setItemMeta(this.itemMeta);
     if (this.amount != 1) {
