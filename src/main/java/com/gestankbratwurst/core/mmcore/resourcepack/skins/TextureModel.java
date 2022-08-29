@@ -46,6 +46,7 @@ public enum TextureModel {
   BLACK_ARROW_UP(Material.STICK, 1003, false, false, false),
   GREEN_CHECK(Material.STICK, 1004, false, false, false),
   RED_X(Material.STICK, 1005, false, false, false),
+  RED_X_BOW(Material.BOW, 1005, false, false, false),
   DOUBLE_GRAY_ARROW_UP(Material.STICK, 1006, false, false, false),
   DOUBLE_GRAY_ARROW_DOWN(Material.STICK, 1007, false, false, false),
   DOUBLE_GRAY_ARROW_LEFT(Material.STICK, 1008, false, false, false),
