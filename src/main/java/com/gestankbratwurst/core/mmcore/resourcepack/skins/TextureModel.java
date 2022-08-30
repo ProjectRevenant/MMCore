@@ -343,6 +343,7 @@ public enum TextureModel {
   SPADE_4(Material.STICK, 1372, false, false, false, new FontMeta(0, 0, 11, 9, "bitmap")),
   SPADE_3(Material.STICK, 1373, false, false, false, new FontMeta(0, 0, 11, 9, "bitmap")),
   SPADE_2(Material.STICK, 1374, false, false, false, new FontMeta(0, 0, 11, 9, "bitmap")),
+  BLOCKED_HAND_ICON(Material.STICK, 1375, false, false, false),
 
   TRADE_GUI(Material.STICK, 2000, false, true, false),
   ADMIN_SHOP_BORDER(Material.STICK, 2001, false, true, false),
