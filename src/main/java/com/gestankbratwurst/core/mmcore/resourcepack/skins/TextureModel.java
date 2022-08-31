@@ -343,7 +343,7 @@ public enum TextureModel {
   SPADE_4(Material.STICK, 1372, false, false, false, new FontMeta(0, 0, 11, 9, "bitmap")),
   SPADE_3(Material.STICK, 1373, false, false, false, new FontMeta(0, 0, 11, 9, "bitmap")),
   SPADE_2(Material.STICK, 1374, false, false, false, new FontMeta(0, 0, 11, 9, "bitmap")),
-  BLOCKED_HAND_ICON(Material.STICK, 1375, false, false, false),
+  BLOCKED_HAND_ICON(Material.STICK, 1375, false, true, false),
 
   TRADE_GUI(Material.STICK, 2000, false, true, false),
   ADMIN_SHOP_BORDER(Material.STICK, 2001, false, true, false),
@@ -586,6 +586,7 @@ public enum TextureModel {
   TORSO_HEALING_BONE(Material.NETHER_BRICK, 49, false, false, false, FontMeta.of(18,0, "bitmap")),
   HEALING_HEAD_BONE_SMALL(Material.NETHER_BRICK, 50, false, false, false),
   TORSO_HEALING_BONE_SMALL(Material.NETHER_BRICK, 51, false, false, false),
+  GREEN_HEAL_CROSS(Material.NETHER_BRICK, 52, false, false, false),
 
   TAB_ICON_SERVER(Material.ACACIA_BOAT, 1, false, false, false, tabFont()),
   TAB_ICON_BODY(Material.ACACIA_BOAT, 2, false, false, false, tabFont()),
