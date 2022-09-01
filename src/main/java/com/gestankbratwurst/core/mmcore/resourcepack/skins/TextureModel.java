@@ -48,6 +48,7 @@ public enum TextureModel {
   GREEN_CHECK(Material.STICK, 1004, false, false, false),
   RED_X(Material.STICK, 1005, false, false, false),
   RED_X_BOW(Material.BOW, 1005, false, false, false),
+  RED_X_BREAD(Material.BREAD, 1005, false, false, false),
   DOUBLE_GRAY_ARROW_UP(Material.STICK, 1006, false, false, false),
   DOUBLE_GRAY_ARROW_DOWN(Material.STICK, 1007, false, false, false),
   DOUBLE_GRAY_ARROW_LEFT(Material.STICK, 1008, false, false, false),
@@ -343,6 +344,7 @@ public enum TextureModel {
   SPADE_4(Material.STICK, 1372, false, false, false, new FontMeta(0, 0, 11, 9, "bitmap")),
   SPADE_3(Material.STICK, 1373, false, false, false, new FontMeta(0, 0, 11, 9, "bitmap")),
   SPADE_2(Material.STICK, 1374, false, false, false, new FontMeta(0, 0, 11, 9, "bitmap")),
+  BLOCKED_HAND_ICON(Material.STICK, 1375, false, true, false),
 
   TRADE_GUI(Material.STICK, 2000, false, true, false),
   ADMIN_SHOP_BORDER(Material.STICK, 2001, false, true, false),
@@ -581,6 +583,12 @@ public enum TextureModel {
   WOUND_INFECTION_SMALL(Material.NETHER_BRICK, 45, false, false, false),
   BIO_HAZARD(Material.NETHER_BRICK, 46, false, false, false, FontMeta.of(18,0, "bitmap")),
   BIO_HAZARD_SMALL(Material.NETHER_BRICK, 47, false, false, false),
+  HEALING_HEAD_BONE(Material.NETHER_BRICK, 48, false, false, false, FontMeta.of(18,0, "bitmap")),
+  TORSO_HEALING_BONE(Material.NETHER_BRICK, 49, false, false, false, FontMeta.of(18,0, "bitmap")),
+  HEALING_HEAD_BONE_SMALL(Material.NETHER_BRICK, 50, false, false, false),
+  TORSO_HEALING_BONE_SMALL(Material.NETHER_BRICK, 51, false, false, false),
+  GREEN_HEAL_CROSS(Material.NETHER_BRICK, 52, false, false, false, FontMeta.of(18,0, "bitmap")),
+  GREEN_HEAL_CROSS_SMALL(Material.NETHER_BRICK, 53, false, false, false),
 
   TAB_ICON_SERVER(Material.ACACIA_BOAT, 1, false, false, false, tabFont()),
   TAB_ICON_BODY(Material.ACACIA_BOAT, 2, false, false, false, tabFont()),
