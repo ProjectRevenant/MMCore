@@ -39,6 +39,7 @@ public enum TextureModel {
   MURKY_WATER_BOTTLE(Material.POTION, 2, false, false, false),
   SALT_WATER_BOTTLE(Material.POTION, 3, false, false, false),
   EMPTY_WATER_BOTTLE(Material.CLAY_BALL, 4, false, false, false),
+  DUMMY_SWORD(Material.WOODEN_AXE, 5,false, true, false),
 
   BLACK_ARROW_DOWN(Material.STICK, 1000, false, false, false),
   BLACK_ARROW_LEFT(Material.STICK, 1001, false, false, false),
