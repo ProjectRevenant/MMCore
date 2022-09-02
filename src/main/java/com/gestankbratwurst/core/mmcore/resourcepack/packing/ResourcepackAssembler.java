@@ -214,7 +214,7 @@ public class ResourcepackAssembler {
 
   private void copyModelEngineModels() {
     final File pluginsFolder = this.plugin.getDataFolder().getParentFile();
-    final File modelEngineFolder = new File(pluginsFolder + File.separator + "ModelEngine");
+    final File modelEngineFolder = new File(pluginsFolder + File.separator + "ModelEngine_Beta");
     if (!modelEngineFolder.exists()) {
       LOGGER.info("Cant find ModelEngine folder: " + modelEngineFolder);
       return;
