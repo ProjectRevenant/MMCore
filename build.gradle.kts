@@ -83,5 +83,5 @@ bukkit {
     apiVersion = "1.19"
     authors = listOf("Gestankbratwurst")
     depend = listOf("ProtocolLib")
-    softDepend = listOf("ModelEngine")
+    softDepend = listOf("ModelEngine_Beta")
 }
