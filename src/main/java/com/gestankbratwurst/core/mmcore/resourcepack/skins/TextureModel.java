@@ -589,6 +589,8 @@ public enum TextureModel {
   TORSO_HEALING_BONE_SMALL(Material.NETHER_BRICK, 51, false, false, false),
   GREEN_HEAL_CROSS(Material.NETHER_BRICK, 52, false, false, false, FontMeta.of(18,0, "bitmap")),
   GREEN_HEAL_CROSS_SMALL(Material.NETHER_BRICK, 53, false, false, false),
+  SOUND_ICON(Material.NETHER_BRICK, 54, false, false, false, FontMeta.of(18,0, "bitmap")),
+  SOUND_ICON_SMALL(Material.NETHER_BRICK, 55, false, false, false),
 
   TAB_ICON_SERVER(Material.ACACIA_BOAT, 1, false, false, false, tabFont()),
   TAB_ICON_BODY(Material.ACACIA_BOAT, 2, false, false, false, tabFont()),
