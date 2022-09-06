@@ -2,6 +2,7 @@ package com.gestankbratwurst.core.mmcore.util.tasks;
 
 import com.gestankbratwurst.core.mmcore.MMCore;
 import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -10,6 +11,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -79,6 +81,21 @@ public class TaskManager {
 
   public <T> Future<T> callSyncMethod(final Callable<T> callable) {
     return this.bukkitScheduler.callSyncMethod(this.plugin, callable);
+  }
+
+  public <T> CompletableFuture<T> callSync(Callable<T> callable) {
+    CompletableFuture<T> future = new CompletableFuture<>();
+
+    runBukkitSync(() -> {
+      try {
+        T value = callable.call();
+        future.complete(value);
+      } catch (Exception e) {
+        future.completeExceptionally(e);
+      }
+    });
+
+    return future;
   }
 
   // Replaces everything but 0-9
