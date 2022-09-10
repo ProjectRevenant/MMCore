@@ -15,12 +15,14 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import java.io.File;
+import java.util.Objects;
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -690,6 +692,22 @@ public enum TextureModel {
     profile.removeProperty("textures");
     profile.setProperty(new ProfileProperty("textures", this.skin.data.texture.value, this.skin.data.texture.signature));
     player.setPlayerProfile(profile);
+  }
+
+  public static TextureModel ofItemStack(ItemStack itemStack) {
+    if(itemStack == null) {
+      return null;
+    }
+    ItemMeta meta = itemStack.getItemMeta();
+    if(meta == null) {
+      return null;
+    }
+    PersistentDataContainer container = meta.getPersistentDataContainer();
+    String modelId = container.get(Objects.requireNonNull(NamespacedKey.fromString("Model")), PersistentDataType.STRING);
+    if(modelId == null) {
+      return null;
+    }
+    return TextureModel.valueOf(modelId);
   }
 
   public void applySkinTo(final TabLine line) {
