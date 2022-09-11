@@ -352,6 +352,9 @@ public enum TextureModel {
   ADMIN_SHOP_BORDER(Material.STICK, 2001, false, true, false),
   RECIPE_VIEW_UI(Material.STICK, 2002, false, true, false),
   MOCK_UI(Material.STICK, 2003, false, false, false, new FontMeta(-100, -8, 90, 0, "bitmap")),
+  DUMMY_UI(Material.STICK, 2004, false, false, false, new FontMeta(-100, -8, 256, 50, "bitmap")),
+  PIXEL(Material.STICK, 2005, false, false, false, new FontMeta( 0, 0, -51, -2000, "bitmap")),
+  DEFAULT_CRAFTING_UI(Material.STICK, 2006, false, false, false, new FontMeta(-100, -8, 256, 50, "bitmap")),
 
   DWARF_SKIN_1(Material.STICK, 2500, false, false, true),
   NETHERITE_BLOCK_SKIN(Material.STICK, 2501, false, false, true),
