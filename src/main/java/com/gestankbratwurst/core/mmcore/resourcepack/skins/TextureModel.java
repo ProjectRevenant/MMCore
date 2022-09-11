@@ -355,6 +355,7 @@ public enum TextureModel {
   DUMMY_UI(Material.STICK, 2004, false, false, false, new FontMeta(-100, -8, 256, 50, "bitmap")),
   PIXEL(Material.STICK, 2005, false, false, false, new FontMeta( 0, 0, -51, -2000, "bitmap")),
   DEFAULT_CRAFTING_UI(Material.STICK, 2006, false, false, false, new FontMeta(-100, -8, 256, 50, "bitmap")),
+  EMPTY(Material.STICK, 2007, false, false, false),
 
   DWARF_SKIN_1(Material.STICK, 2500, false, false, true),
   NETHERITE_BLOCK_SKIN(Material.STICK, 2501, false, false, true),
@@ -706,7 +707,7 @@ public enum TextureModel {
       return null;
     }
     PersistentDataContainer container = meta.getPersistentDataContainer();
-    String modelId = container.get(Objects.requireNonNull(NamespacedKey.fromString("Model")), PersistentDataType.STRING);
+    String modelId = container.get(Objects.requireNonNull(NamespaceFactory.provide("model-id")), PersistentDataType.STRING);
     if(modelId == null) {
       return null;
     }
@@ -726,7 +727,7 @@ public enum TextureModel {
       this.item = new ItemBuilder(this.baseMaterial)
           .modelData(this.modelID)
           .name(this.toString())
-          .addPersistentData("Model", PersistentDataType.STRING, this.toString())
+          .addPersistentData("model-id", PersistentDataType.STRING, this.toString())
           .build();
     }
     return this.item.clone();

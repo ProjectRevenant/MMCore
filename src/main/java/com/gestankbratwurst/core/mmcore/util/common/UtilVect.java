@@ -4,7 +4,6 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
-import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -120,7 +119,8 @@ public class UtilVect {
     }.runTaskTimer(plugin, 1L, 1L);
   }
 
-  public static void showBoundingBox(final BoundingBox box, final Player player, final int viewDist) {
+  public static void showBoundingBox(final BoundingBox box, final Player player, final int viewDist, double delta, float size,
+      Color color) {
     final World world = player.getWorld();
     final double maxDistSq = viewDist * viewDist;
     final Location iii = new Location(world, box.getMinX(), box.getMinY(), box.getMinZ());
@@ -134,34 +134,38 @@ public class UtilVect {
 
     final List<Location> points = new ArrayList<>();
 
-    points.addAll(getPointsBetween(iii, aii));
-    points.addAll(getPointsBetween(iii, iia));
-    points.addAll(getPointsBetween(iii, iai));
+    points.addAll(getPointsBetween(iii, aii, delta));
+    points.addAll(getPointsBetween(iii, iia, delta));
+    points.addAll(getPointsBetween(iii, iai, delta));
 
-    points.addAll(getPointsBetween(aia, aii));
-    points.addAll(getPointsBetween(aia, iia));
+    points.addAll(getPointsBetween(aia, aii, delta));
+    points.addAll(getPointsBetween(aia, iia, delta));
 
-    points.addAll(getPointsBetween(iai, aai));
-    points.addAll(getPointsBetween(iai, iaa));
-    points.addAll(getPointsBetween(iaa, iia));
+    points.addAll(getPointsBetween(iai, aai, delta));
+    points.addAll(getPointsBetween(iai, iaa, delta));
+    points.addAll(getPointsBetween(iaa, iia, delta));
 
-    points.addAll(getPointsBetween(aii, aai));
-    points.addAll(getPointsBetween(aii, aai));
+    points.addAll(getPointsBetween(aii, aai, delta));
+    points.addAll(getPointsBetween(aii, aai, delta));
 
-    points.addAll(getPointsBetween(aaa, aai));
-    points.addAll(getPointsBetween(aaa, iaa));
-    points.addAll(getPointsBetween(aaa, aia));
+    points.addAll(getPointsBetween(aaa, aai, delta));
+    points.addAll(getPointsBetween(aaa, iaa, delta));
+    points.addAll(getPointsBetween(aaa, aia, delta));
 
-    particles(points, player.getLocation(), maxDistSq);
+    particles(points, player.getLocation(), maxDistSq, size, color);
   }
 
-  private static List<Location> getPointsBetween(Location from, Location to) {
+  public static void showBoundingBox(final BoundingBox box, final Player player, final int viewDist) {
+    showBoundingBox(box, player, viewDist, 0.75, 0.7F, Color.RED);
+  }
+
+  private static List<Location> getPointsBetween(Location from, Location to, double delta) {
     final List<Location> locations = new ArrayList<>();
     from = from.clone();
     to = to.clone();
     final Vector dir = to.toVector().subtract(from.toVector());
-    final int increments = (int) (dir.length() / 0.75);
-    dir.normalize().multiply(0.75);
+    final int increments = (int) (dir.length() / delta);
+    dir.normalize().multiply(delta);
     for (int i = 0; i < increments; i++) {
       from.add(dir);
       locations.add(from.clone());
@@ -170,8 +174,8 @@ public class UtilVect {
     return locations;
   }
 
-  private static void particles(final List<Location> locations, final Location view, final double distSq) {
-    final DustOptions options = new DustOptions(Color.RED, 1F);
+  private static void particles(final List<Location> locations, final Location view, final double distSq, float size, Color color) {
+    final DustOptions options = new DustOptions(color, size);
     final World world = view.getWorld();
     for (final Location point : locations) {
       if (view.toVector().subtract(point.toVector()).lengthSquared() < distSq) {
