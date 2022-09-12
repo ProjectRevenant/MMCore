@@ -15,6 +15,7 @@ import com.gestankbratwurst.core.mmcore.data.json.adapter.ItemStackAdapter;
 import com.gestankbratwurst.core.mmcore.data.json.adapter.LocationAdapter;
 import com.gestankbratwurst.core.mmcore.data.mongodb.MongoStorage;
 import com.gestankbratwurst.core.mmcore.data.redis.RedisGsonCodec;
+import com.gestankbratwurst.core.mmcore.events.recipebook.KnowledgeBookPacketAdapter;
 import com.gestankbratwurst.core.mmcore.protocol.holograms.impl.HologramManager;
 import com.gestankbratwurst.core.mmcore.resourcepack.ModelCommand;
 import com.gestankbratwurst.core.mmcore.resourcepack.ResourcepackModule;
@@ -152,6 +153,7 @@ public final class MMCore extends JavaPlugin {
 
   private void initUtils() {
     ProtocolLibrary.getProtocolManager().addPacketListener(displayCompiler);
+    ProtocolLibrary.getProtocolManager().addPacketListener(new KnowledgeBookPacketAdapter(this));
     BukkitTime.start(this);
     ChatInput.init(this);
     NamespaceFactory.init(this);

@@ -40,7 +40,10 @@ public enum CustomSound {
   APOLLO(),
   MERAKI(),
   STORM(),
-  WAR_HORN();
+  WAR_HORN(),
+  STICK_HIT_ONE(),
+  STICK_HIT_TWO(),
+  STICK_HIT_THREE();
 
   @Getter
   private ResourceLocation key = null;
