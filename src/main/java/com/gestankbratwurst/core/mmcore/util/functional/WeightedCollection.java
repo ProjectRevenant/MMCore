@@ -3,6 +3,7 @@ package com.gestankbratwurst.core.mmcore.util.functional;
 import java.util.NavigableMap;
 import java.util.Random;
 import java.util.TreeMap;
+import java.util.concurrent.ThreadLocalRandom;
 
 /*******************************************************
  * Copyright (C) Gestankbratwurst suotokka@gmail.com
@@ -16,7 +17,7 @@ import java.util.TreeMap;
 public class WeightedCollection<E> {
 
   private final NavigableMap<Double, E> binarySearchableMap = new TreeMap<>();
-  private final Random random;
+  private transient final Random random;
   private double weightSum = 0;
 
   public WeightedCollection() {
