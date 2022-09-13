@@ -25,6 +25,15 @@ public abstract class AbstractGUIInventory implements IInventoryHandler {
     this.openFor(player);
   }
 
+  protected void autoUpdateButtons(final Player player, final Inventory inventory) {
+    buttonMap.forEach((slot, button) -> {
+      if (button.isAutoUpdated()) {
+        Function<Player, ItemStack> itemCreator = button.getIconCreator();
+        inventory.setItem(slot, itemCreator == null ? null : itemCreator.apply(player));
+      }
+    });
+  }
+
   public void openFor(final Player player) {
     final GUIManager guiManager = GUIManager.getInstance();
     final Inventory inventory = this.createInventory(player);

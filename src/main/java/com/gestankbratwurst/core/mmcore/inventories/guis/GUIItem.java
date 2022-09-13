@@ -17,5 +17,7 @@ public class GUIItem {
   private final Function<Player, ItemStack> iconCreator;
   @Getter
   private final Consumer<InventoryClickEvent> eventConsumer;
+  @Getter
+  private boolean autoUpdated;
 
 }

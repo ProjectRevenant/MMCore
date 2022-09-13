@@ -341,6 +341,8 @@ public enum TextureModel {
   SPADE_3(Material.STICK, 1373, false, false, false, new FontMeta(0, 0, 11, 9, "bitmap")),
   SPADE_2(Material.STICK, 1374, false, false, false, new FontMeta(0, 0, 11, 9, "bitmap")),
   BLOCKED_HAND_ICON(Material.STICK, 1375, false, true, false),
+  CAMPFIRE_ON(Material.STICK, 1376, false, false, false),
+  CAMPFIRE_OFF(Material.STICK, 1377, false, false, false),
 
   TRADE_GUI(Material.STICK, 2000, false, true, false),
   ADMIN_SHOP_BORDER(Material.STICK, 2001, false, true, false),
@@ -350,6 +352,7 @@ public enum TextureModel {
   PIXEL(Material.STICK, 2005, false, false, false, new FontMeta(0, 0, -51, -2000, "bitmap")),
   DEFAULT_CRAFTING_UI(Material.STICK, 2006, false, false, false, new FontMeta(-100, -8, 256, 50, "bitmap")),
   EMPTY(Material.STICK, 2007, false, false, false),
+  CAMPFIRE_CRAFTING_UI(Material.STICK, 2008, false, false, false, new FontMeta(-100, -8, 256, 50, "bitmap")),
 
   DWARF_SKIN_1(Material.STICK, 2500, false, false, true),
   NETHERITE_BLOCK_SKIN(Material.STICK, 2501, false, false, true),

@@ -1,6 +1,7 @@
 package com.gestankbratwurst.core.mmcore.inventories.guis;
 
 import com.gestankbratwurst.core.mmcore.MMCore;
+import com.gestankbratwurst.core.mmcore.util.tasks.TaskManager;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -8,7 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class GUIManager {
+public class GUIManager implements Runnable {
 
   protected static GUIManager instance;
 
@@ -17,6 +18,7 @@ public class GUIManager {
       instance = new GUIManager();
       final GUIListener listener = new GUIListener(instance);
       Bukkit.getPluginManager().registerEvents(listener, JavaPlugin.getPlugin(MMCore.class));
+      TaskManager.getInstance().runTaskTimer(instance, 1, 1);
     }
     return instance;
   }
@@ -35,4 +37,11 @@ public class GUIManager {
     this.inventoryHandlerMap.remove(inventory);
   }
 
+  @Override
+  public void run() {
+    Bukkit.getOnlinePlayers().forEach(player -> {
+      Inventory inventory = player.getOpenInventory().getTopInventory();
+      getOptionalHandlerOf(inventory).ifPresent(handler -> handler.autoUpdateButtons(player, inventory));
+    });
+  }
 }
