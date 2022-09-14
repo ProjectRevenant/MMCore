@@ -50,7 +50,7 @@ dependencies {
     api("co.aikar:acf-paper:0.5.1-SNAPSHOT")
     api("org.mongodb:mongodb-driver-sync:4.7.1")
     api("org.redisson:redisson:3.17.5")
-    api("org.java-websocket:Java-WebSocket:1.5.3")
+    // api("org.java-websocket:Java-WebSocket:1.5.3")
     // api("net.dv8tion:JDA:5.0.0-alpha.2")
     // implementation("org.apache.commons:commons-lang3:3.12.0")
 
