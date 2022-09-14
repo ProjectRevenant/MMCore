@@ -352,7 +352,7 @@ public enum TextureModel {
   MOCK_UI(Material.STICK, 2003, false, false, false, new FontMeta(-100, -8, 90, 0, "bitmap")),
   DUMMY_UI(Material.STICK, 2004, false, false, false, new FontMeta(-100, -8, 256, 50, "bitmap")),
   PIXEL(Material.STICK, 2005, false, false, false, new FontMeta(0, 0, -51, -2000, "bitmap")),
-  PIXEL_S(Material.STICK, 2006, false, false, false, new FontMeta(0, 0, -1, -2000, "bitmap")),
+  PIXEL_S(Material.STICK, 2006, false, false, false, new FontMeta(0, 0, -3, -2000, "bitmap")),
   PIXEL_M(Material.STICK, 2007, false, false, false, new FontMeta(0, 0, -10, -2000, "bitmap")),
   PIXEL_L(Material.STICK, 2008, false, false, false, new FontMeta(0, 0, -25, -2000, "bitmap")),
   DEFAULT_CRAFTING_UI(Material.STICK, 2009, false, false, false, new FontMeta(-100, -8, 256, 50, "bitmap")),
@@ -422,13 +422,21 @@ public enum TextureModel {
   WATER_ICON_10(Material.ACACIA_BOAT, 3042, false, false, false, iconFont()),
   WATER_ICON_0(Material.ACACIA_BOAT, 3043, false, false, false, iconFont()),
 
-  GRADIENT_ICON_3(Material.ACACIA_BOAT, 3044, false, false, false, gradientFont()),
-  GRADIENT_ICON_2(Material.ACACIA_BOAT, 3045, false, false, false, gradientFont()),
-  GRADIENT_ICON_1(Material.ACACIA_BOAT, 3046, false, false, false, gradientFont()),
-  GRADIENT_ICON_0(Material.ACACIA_BOAT, 3047, false, false, false, gradientFont()),
-  GRADIENT_ICON_M1(Material.ACACIA_BOAT, 3048, false, false, false, gradientFont()),
-  GRADIENT_ICON_M2(Material.ACACIA_BOAT, 3049, false, false, false, gradientFont()),
-  GRADIENT_ICON_M3(Material.ACACIA_BOAT, 3050, false, false, false, gradientFont()),
+  GRADIENT_ICON_3(Material.FIRE_CHARGE, 3044, false, false, false, gradientFont()),
+  GRADIENT_ICON_2(Material.FIRE_CHARGE, 3045, false, false, false, gradientFont()),
+  GRADIENT_ICON_1(Material.FIRE_CHARGE, 3046, false, false, false, gradientFont()),
+  GRADIENT_ICON_0(Material.FIRE_CHARGE, 3047, false, false, false, gradientFont()),
+  GRADIENT_ICON_M1(Material.FIRE_CHARGE, 3048, false, false, false, gradientFont()),
+  GRADIENT_ICON_M2(Material.FIRE_CHARGE, 3049, false, false, false, gradientFont()),
+  GRADIENT_ICON_M3(Material.FIRE_CHARGE, 3050, false, false, false, gradientFont()),
+
+  GRADIENT_ICON_3_AS(Material.FIRE_CHARGE, 3051, false, false, false, gradientFontAs()),
+  GRADIENT_ICON_2_AS(Material.FIRE_CHARGE, 3052, false, false, false, gradientFontAs()),
+  GRADIENT_ICON_1_AS(Material.FIRE_CHARGE, 3053, false, false, false, gradientFontAs()),
+  GRADIENT_ICON_0_AS(Material.FIRE_CHARGE, 3054, false, false, false, gradientFontAs()),
+  GRADIENT_ICON_M1_AS(Material.FIRE_CHARGE, 3055, false, false, false, gradientFontAs()),
+  GRADIENT_ICON_M2_AS(Material.FIRE_CHARGE, 3056, false, false, false, gradientFontAs()),
+  GRADIENT_ICON_M3_AS(Material.FIRE_CHARGE, 3057, false, false, false, gradientFontAs()),
 
   HEALTH_0(Material.ACACIA_BOAT, 4000, false, false, false, iconFont()),
   HEALTH_4(Material.ACACIA_BOAT, 4001, false, false, false, iconFont()),
@@ -1190,6 +1198,10 @@ public enum TextureModel {
 
   private static FontMeta gradientFont() {
     return new FontMeta(0, 0, 42, 4, "bitmap");
+  }
+
+  private static FontMeta gradientFontAs() {
+    return new FontMeta(0, 0, 42, 20, "bitmap");
   }
 
   @Getter

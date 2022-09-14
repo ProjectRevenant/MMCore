@@ -29,7 +29,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class AssetLibrary {
 
-  private static final String VERSION = "1.17.1";
+  private static final String VERSION = "1.19.2";
   private static final String ASSET_URL = "https://assets.mcasset.cloud/" + AssetLibrary.VERSION + "/assets/minecraft/models/";
 
 
