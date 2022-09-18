@@ -106,11 +106,11 @@ public class ChunkTracker implements Listener {
   }
 
   public static LongSet getChunkViews(final Player player) {
-    return new LongOpenHashSet(chunkViews.get(player));
+    return new LongOpenHashSet(chunkViews.getOrDefault(player, new LongOpenHashSet()));
   }
 
   public static boolean isChunkInView(final Player player, final long chunkKey) {
-    return chunkViews.get(player).contains(chunkKey);
+    return chunkViews.getOrDefault(player, new LongOpenHashSet()).contains(chunkKey);
   }
 
   public static boolean isChunkInView(final Player player, final Chunk chunk) {
@@ -118,7 +118,7 @@ public class ChunkTracker implements Listener {
   }
 
   public static LongSet getChunkViewOf(final Player player) {
-    return new LongOpenHashSet(chunkViews.get(player));
+    return new LongOpenHashSet(chunkViews.getOrDefault(player, new LongOpenHashSet()));
   }
 
 }
