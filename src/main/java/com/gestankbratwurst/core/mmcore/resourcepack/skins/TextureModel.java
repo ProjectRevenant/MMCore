@@ -346,6 +346,12 @@ public enum TextureModel {
   BELLOW_OPEN(Material.IRON_HOE, 1378, false, false, false),
   BELLOW_CLOSED(Material.IRON_HOE, 1379, false, false, false),
   SPACING(Material.STICK, 1380, false, false, false),
+  COMBAT_PERKS_ICON(Material.STICK, 1381, false, false, false),
+  COMBAT_PERKS_S_ICON(Material.STICK, 1382, false, false, false),
+  SURVIVAL_PERKS_ICON(Material.STICK, 1383, false, false, false),
+  SURVIVAL_PERKS_S_ICON(Material.STICK, 1384, false, false, false),
+  UTILITY_PERKS_ICON(Material.STICK, 1385, false, false, false),
+  UTILITY_PERKS_S_ICON(Material.STICK, 1386, false, false, false),
 
   TRADE_GUI(Material.STICK, 2000, false, true, false),
   ADMIN_SHOP_BORDER(Material.STICK, 2001, false, true, false),
@@ -1100,7 +1106,7 @@ public enum TextureModel {
   }
 
   private static FontMeta gradientFontAs() {
-    return new FontMeta(0, 0, 44, 24, "bitmap");
+    return new FontMeta(0, 0, 44, 26, "bitmap");
   }
 
   @Getter

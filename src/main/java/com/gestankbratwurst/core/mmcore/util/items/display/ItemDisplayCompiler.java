@@ -7,6 +7,8 @@ import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.reflect.StructureModifier;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import java.util.List;
+import net.minecraft.network.protocol.game.ClientboundContainerSetContentPacket;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -63,12 +65,10 @@ public class ItemDisplayCompiler extends PacketAdapter {
     final PacketContainer packet = event.getPacket();
     final Player player = event.getPlayer();
     if (event.getPacketType() == Server.WINDOW_ITEMS) {
-      final StructureModifier<ItemStack[]> structMod = packet.getItemArrayModifier();
+      final StructureModifier<List<ItemStack>> structMod = packet.getItemListModifier();
       for (int index = 0; index < structMod.size(); index++) {
-        final ItemStack[] itemArray = structMod.read(index);
-        for (int i = 0; i < itemArray.length; i++) {
-          itemArray[i] = this.apply(player, itemArray[i]);
-        }
+        final List<ItemStack> itemArray = structMod.read(index);
+        itemArray.replaceAll(itemStack -> this.apply(player, itemStack));
         structMod.write(index, itemArray);
       }
     } else {
