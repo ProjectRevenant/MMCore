@@ -1,0 +1,40 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "item/generated",
+	"textures": {
+		"particle": "custom/steel_dagger",
+		"layer0": "custom/steel_dagger"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, -90, 45],
+			"translation": [0.25, 5, 0]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 90, -45],
+			"translation": [0.25, 5.25, 0]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -90, 55],
+			"translation": [1, 2, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 80, -60],
+			"translation": [1, 2.5, 1]
+		},
+		"ground": {
+			"translation": [0, 4.25, 0]
+		},
+		"gui": {
+			"translation": [1.75, 1.75, 0],
+			"scale": [0.9, 0.9, 0.9]
+		},
+		"head": {
+			"translation": [-1.75, 4.5, -13.75],
+			"scale": [3, 3, 3]
+		},
+		"fixed": {
+			"translation": [1.75, 2.25, 0]
+		}
+	}
+}

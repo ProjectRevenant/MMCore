@@ -1,0 +1,36 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "item/generated",
+	"textures": {
+		"particle": "custom/steel_mace",
+		"layer0": "custom/steel_mace"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, -90, 45],
+			"translation": [0.25, 3.75, 0]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 90, -45],
+			"translation": [0.25, 3.75, 0]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -90, 55],
+			"translation": [1, 2, 1]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 90, -60],
+			"translation": [1, 2.25, 1]
+		},
+		"ground": {
+			"translation": [0, 3.5, 0]
+		},
+		"head": {
+			"translation": [-1.75, 4.5, -13.75],
+			"scale": [3, 3, 3]
+		},
+		"fixed": {
+			"translation": [0.5, 0.5, 0]
+		}
+	}
+}
