@@ -3,12 +3,15 @@ package com.gestankbratwurst.core.mmcore.protocol.holograms;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import lombok.Getter;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
@@ -38,6 +41,31 @@ public abstract class AbstractHologram {
   protected boolean clickable;
   @Getter
   private final UUID holoID;
+
+
+  private static Vector vectorFromRotations(double pitch, double yaw) {
+    return new Vector(Math.sin(pitch) * Math.cos(yaw), Math.sin(pitch) * Math.sin(yaw), Math.cos(pitch));
+  }
+
+  public static Location getLocalCoord(double x, double y, double z, Location origin) {
+    Location arrival = origin.clone();
+
+    Vector dirX = vectorFromRotations(arrival.getPitch(), Location.normalizeYaw(arrival.getYaw() - 90));
+    Vector dirY = vectorFromRotations(arrival.getYaw(), arrival.getPitch() - 90);
+    Vector dirZ = arrival.getDirection().normalize();
+
+    return arrival.add(dirX.multiply(x)).add(dirY.multiply(y)).add(dirZ.multiply(z));
+  }
+
+  public static void giveOrDrop(Player player, Collection<ItemStack> items) {
+    giveOrDrop(player, items.toArray(new ItemStack[0]));
+  }
+
+  public static void giveOrDrop(Player player, ItemStack... items) {
+    World world = player.getWorld();
+    Location loc = player.getLocation();
+    player.getInventory().addItem(items).values().forEach(overflown -> world.dropItem(loc, overflown));
+  }
 
   protected void registerClickableEntities() {
     this.manager.setClickableIdentifier(this.getClickableEntityIds(), this);
